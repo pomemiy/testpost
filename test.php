@@ -5,8 +5,8 @@ session_start();
 // ローカルのMySQLDBに接続
 $servername = "localhost";
 $username = "root";
-$password = "migikatanochou";
-$dbname = "mysample";
+$password = "my_password";
+$dbname = "my_sample";
 
 // データベース接続の作成
 $conn = new mysqli($servername, $username, $password, $dbname);
