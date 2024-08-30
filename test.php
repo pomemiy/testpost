@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $position = $_POST['position'];       // フォームからポジションを取得
   $review = $_POST['review'];           // フォームから寸評を取得
 
-  // プリペアドステートメントを使用してSQLインジェクションを防ぐ
+  // SQLコードの挿入を防ぐ
   $sql = "INSERT INTO test1 (name, uninumber, birthday, position, review) VALUES (?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("sssss", $name, $uninumber, $birthday, $position, $review);
@@ -53,41 +53,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple CMS</title>
-</head>
-<body>
-    <h2>選手情報を入稿する</h2>
-
-    <!-- メッセージ表示 -->
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo "<p>" . htmlspecialchars($_SESSION['message']) . "</p>";
-        unset($_SESSION['message']); // メッセージを表示後に削除
-    }
-    ?>
-
-
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-        <label for="name">名前:</label><br>
-        <input type="text" id="name" name="name" required><br>
-        <label for="uninumber">背番号:</label><br>
-        <input type="text" id="uninumber" name="uninumber" required><br>
-        <label for="position">ポジション:</label><br>
-        <select id="position" name="position">
-            <option value="1">投手</option>
-            <option value="2">捕手</option>
-            <option value="3">内野手</option>
-            <option value="4">外野手</option>
-        </select><br>
-        <label for="birthday">生年月日:</label><br>
-        <input type="date" id="birthday" name="birthday" required><br>
-        <label for="review">寸評:</label><br>
-        <textarea id="review" name="review" rows="4" cols="50"></textarea><br>
-
-        <input type="submit" value="送信">
-    </form>
-</body>
-</html>
