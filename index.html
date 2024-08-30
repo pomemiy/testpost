@@ -6,7 +6,15 @@
 <body>
     <h2>選手情報を入稿する</h2>
 
+    <!-- メッセージ表示 -->
+<!--     <?php
+    if (isset($_SESSION['message'])) {
+        echo "<p>" . htmlspecialchars($_SESSION['message']) . "</p>";
+        unset($_SESSION['message']); // メッセージを表示後に削除
+    }
+    ?> -->
 
+    
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label for="name">名前:</label><br>
         <input type="text" id="name" name="name" required><br>
